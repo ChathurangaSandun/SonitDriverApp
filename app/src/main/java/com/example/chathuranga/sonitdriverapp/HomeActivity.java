@@ -2,6 +2,7 @@ package com.example.chathuranga.sonitdriverapp;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,6 +17,9 @@ public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     SessionManager session;
+    boolean homeFramentFlag = true;
+
+    String customerID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +36,22 @@ public class HomeActivity extends AppCompatActivity
 
         // name
         String name = user.get(SessionManager.KEY_NAME);
-        String customerID = user.get(SessionManager.KEY_USERID);
+        customerID = user.get(SessionManager.KEY_USERID);
 
 
         System.out.println("session------------->"+name);
         System.out.println("session------------->" + customerID);
+
+
+        //TODO  login set to driver and get driver id
+        HomeFragment fragment = new HomeFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("CUSTOMERID", Integer.parseInt(customerID));
+        fragment.setArguments(bundle);
+
+        FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.commit();
 
 
 
@@ -92,6 +107,14 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
+            HomeFragment fragment = new HomeFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt("CUSTOMERID", Integer.parseInt(customerID));
+            fragment.setArguments(bundle);
+
+            FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.commit();
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 

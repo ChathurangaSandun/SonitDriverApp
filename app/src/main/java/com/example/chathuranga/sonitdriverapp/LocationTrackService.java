@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
-import static com.taxicaller.pamba.maap.CommonUtilities.SERVER_URL;
+import static com.example.chathuranga.sonitdriverapp.CommonUtilities.SERVER_URL;
 
 public class LocationTrackService extends Service
 {
