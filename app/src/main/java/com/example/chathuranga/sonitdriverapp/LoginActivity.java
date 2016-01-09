@@ -18,12 +18,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
-import static com.example.chathuranga.sonitdriverapp.CommonUtilities.SERVER_URL;
 import com.example.chathuranga.sonitdriverapp.Parsers.UsesrJSONParser;
 import com.example.chathuranga.sonitdriverapp.models.User;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.chathuranga.sonitdriverapp.CommonUtilities.SERVER_URL;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -212,7 +213,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-                    Intent homeActivity = new Intent(getApplicationContext(), HomeActivity.class);
+                    Intent homeActivity = new Intent(getApplicationContext(), OnlineActivity.class);
                     startActivity(homeActivity);
                 } else {
                     alert.showAlertDialog(LoginActivity.this, "Login Error!", "Invalied Username and Password", false);

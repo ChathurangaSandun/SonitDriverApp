@@ -1,7 +1,6 @@
 package com.example.chathuranga.sonitdriverapp;
 
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,10 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.chathuranga.sonitdriverapp.Parsers.ReservationShortDetailJSONParser;
 import com.example.chathuranga.sonitdriverapp.models.ReservationShort;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
 import java.util.Timer;
@@ -33,6 +37,9 @@ public class HomeFragment extends Fragment {
     Timer timer;
     int reservationID,jobNumber;
 
+    MapView mMapView;
+    private GoogleMap googleMap;
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -44,38 +51,43 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_home, container, false);
 
+        mMapView = (MapView) v.findViewById(R.id.mapp);
+        mMapView.onCreate(savedInstanceState);
+        mMapView.onResume();// needed to get the map to display immediately
+        googleMap = mMapView.getMap();
+        // latitude and longitude
+        double l1 = 17.385044;
+        double l2 = 78.486671;
+        googleMap.setMyLocationEnabled(true);
+
+        GPSTracker gpsTracker = new GPSTracker(getActivity());
+        GPSTracker gps = new GPSTracker(getActivity());
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(gps.getLatitude(), gps.getLongitude()), 18));
+        MarkerOptions marker = new MarkerOptions().position(
+                new LatLng(gps.getLatitude(),gps.getLongitude())).title("Hello Maps");
+        marker.icon((BitmapDescriptorFactory.fromResource(R.drawable.ic_mycar)));
+        googleMap.addMarker(marker);
 
 
 
 
-        btOnline = (Button) v.findViewById(R.id.btOnline);
-
-
-        btOnline.setOnClickListener(new View.OnClickListener() {
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
             @Override
-            public void onClick(View view) {
-                getActivity().startService(new Intent(getActivity(), LocationTrackService.class));
-                Toast.makeText(getActivity(), "service stop", Toast.LENGTH_LONG).show();
+            public void run() {
 
 
-                timer = new Timer();
-                timer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-
-
-                        requestAssignJob(1);
-
-
-                    }
-                }, 10000, 20000);
-
-
-
+                requestAssignJob(1);
 
 
             }
-        });
+        }, 10000, 20000);
+
+
+
+
+
+
 
 
 
@@ -160,7 +172,18 @@ public class HomeFragment extends Fragment {
 
                 //TODO direct to job activity
                 System.out.println("to job activity___________________");
-                addJobdetail(reservationID);
+
+
+
+
+                /*if(){
+                    addJobdetail(reservationID);
+                }*/
+
+
+
+
+
 
 
             }

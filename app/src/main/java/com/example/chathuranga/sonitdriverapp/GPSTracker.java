@@ -199,16 +199,7 @@ public class GPSTracker extends Service implements LocationListener {
         float bestAccuracy = -1f;
         if (location.getAccuracy() != 0.0f
                 && (location.getAccuracy() < bestAccuracy) || bestAccuracy == -1f) {
-            if (checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                //
-                //    public void requestPermissions(@NonNull String[] permissions, int requestCode)
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for Activity#requestPermissions for more details.
-                return;
-            }
+
             locationManager.removeUpdates(this);
         }
         bestAccuracy = location.getAccuracy();

@@ -64,6 +64,7 @@ public class LocationTrackService extends Service
         RequestPackage p = new RequestPackage();
         p.setMethod("GET");
         p.setUri(loginURL);
+        //TODO add vehicle id
         p.setParam("vehicleid","1");
         p.setParam("lat", String.valueOf(a));
         p.setParam("lon", String.valueOf(b));
