@@ -10,4 +10,104 @@
     tools:showIn="@layout/activity_incoming"
     tools:context="com.example.chathuranga.sonitdriverapp.IncomingActivity">
 
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="You have a new Job"
+            android:id="@+id/textView4"
+            android:layout_gravity="center_horizontal" />
+
+        <fragment
+            android:id="@+id/pkMap"
+            android:name="com.google.android.gms.maps.MapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/tvAddress"
+                android:background="#C3C0C0"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Time To Accept"
+                android:id="@+id/textView5"
+                android:layout_weight="50" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/tvTime"
+                android:layout_weight="50" />
+        </LinearLayout>
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"
+            android:layout_marginBottom="10dp"
+            android:max="60"
+            android:progress="0"
+            android:indeterminate="false" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:id="@+id/btAccept"
+                android:layout_weight="50"
+                android:src="@drawable/ic_accept"
+                android:background="@color/buttonBlue"
+                />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:id="@+id/btCancelReservation"
+                android:layout_weight="50"
+                android:background="#F16868"
+
+                android:src="@drawable/ic_cancel">
+
+                </ImageButton>
+        </LinearLayout>
+
+    </LinearLayout>
+
 </RelativeLayout>

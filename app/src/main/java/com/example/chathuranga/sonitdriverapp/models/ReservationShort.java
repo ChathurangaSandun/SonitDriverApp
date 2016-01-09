@@ -7,17 +7,18 @@ public class
         ReservationShort {
 
     String pickAddress;
-    String dropAddress;
     int reservationID;
+    double pickupLat, pickuplong;
 
-
-    public ReservationShort(String pickAddress, String dropAddress,int reservationID) {
-        this.pickAddress = pickAddress;
-        this.dropAddress = dropAddress;
-        this.reservationID = reservationID;
-    }
 
     public ReservationShort() {
+    }
+
+    public ReservationShort(String pickAddress, int reservationID, double pickupLat, double pickuplong) {
+        this.pickAddress = pickAddress;
+        this.reservationID = reservationID;
+        this.pickupLat = pickupLat;
+        this.pickuplong = pickuplong;
     }
 
     public String getPickAddress() {
@@ -28,19 +29,27 @@ public class
         this.pickAddress = pickAddress;
     }
 
-    public String getDropAddress() {
-        return dropAddress;
-    }
-
-    public void setDropAddress(String dropAddress) {
-        this.dropAddress = dropAddress;
-    }
-
     public int getReservationID() {
         return reservationID;
     }
 
     public void setReservationID(int reservationID) {
         this.reservationID = reservationID;
+    }
+
+    public double getPickupLat() {
+        return pickupLat;
+    }
+
+    public void setPickupLat(double pickupLat) {
+        this.pickupLat = pickupLat;
+    }
+
+    public double getPickuplong() {
+        return pickuplong;
+    }
+
+    public void setPickuplong(double pickuplong) {
+        this.pickuplong = pickuplong;
     }
 }

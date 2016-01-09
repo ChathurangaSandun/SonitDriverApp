@@ -27,7 +27,8 @@ public class ReservationShortDetailJSONParser {
 
                 reservationShort.setReservationID(obj.getInt("reservation_id"));
                 reservationShort.setPickAddress(obj.getString("pk_address"));
-                reservationShort.setDropAddress(obj.getString("do_address"));
+            reservationShort.setPickupLat(obj.getDouble("pkx"));
+            reservationShort.setPickuplong(obj.getDouble("pky"));
 
 
                 reservationShortList.add(reservationShort);

@@ -1,6 +1,7 @@
 package com.example.chathuranga.sonitdriverapp;
 
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -39,6 +40,14 @@ public class HomeFragment extends Fragment {
 
     MapView mMapView;
     private GoogleMap googleMap;
+    static String pickUp;
+
+    static double pkx,pky;
+
+    static boolean FALG = false;
+
+
+
 
     public HomeFragment() {
         // Required empty public constructor
@@ -160,9 +169,11 @@ public class HomeFragment extends Fragment {
 
                 final ReservationShort r = reservationShorts.get(0);
 
-                String pickUp = r.getPickAddress();
-                String dropAddress = r.getDropAddress();
+                pickUp = r.getPickAddress();
                 reservationID = r.getReservationID();
+                 pkx= r.getPickupLat();
+                 pky = r.getPickuplong();
+
 
                 System.out.println(r.getReservationID());
 
@@ -174,11 +185,17 @@ public class HomeFragment extends Fragment {
                 System.out.println("to job activity___________________");
 
 
+                IncomingActivity incomingActivity = new IncomingActivity();
 
 
-                /*if(){
-                    addJobdetail(reservationID);
-                }*/
+                startActivity(new Intent(getContext(), incomingActivity.getClass()));
+
+
+
+                System.out.println("_________________________________________________________");
+
+                System.out.println(isFALG());
+
 
 
 
@@ -255,4 +272,23 @@ public class HomeFragment extends Fragment {
     }
 
 
+    public String getPickUp() {
+        return this.pickUp;
+    }
+
+    public double getPkx() {
+        return this.pkx;
+    }
+
+    public double getPky() {
+        return this.pky;
+    }
+
+    public static boolean isFALG() {
+        return FALG;
+    }
+
+    public static void setFALG(boolean FALG) {
+        HomeFragment.FALG = FALG;
+    }
 }
