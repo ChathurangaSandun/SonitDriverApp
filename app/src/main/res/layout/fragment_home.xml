@@ -15,8 +15,94 @@
         >
     </com.google.android.gms.maps.MapView>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/pickuplayout"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/white">
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="392dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Pickup Location"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#058C0B" />
 
+        <TextView
+            android:id="@+id/adressText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="Getting location"
+            android:textSize="16sp" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/dropofflayout"
+        android:layout_below="@+id/pickuplayout"
+        android:layout_alignRight="@+id/btCancelReservation"
+        android:layout_alignEnd="@+id/btCancelReservation"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="392dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Dropoff Locaiton"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#058C0B" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="Getting location"
+            android:textSize="16sp"
+            android:id="@+id/dropoffaddress" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Arrived"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/btgreen"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/btStatusButton" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Cancel Reservation"
+        android:id="@+id/btCancelReservation"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/btgreen"
+        android:textColor="@color/white"
+
+        android:layout_above="@+id/btStatusButton"
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="5dp"
+        android:layout_alignRight="@+id/btStatusButton"
+        android:layout_alignEnd="@+id/btStatusButton" />
 
 
 </RelativeLayout>

@@ -21,7 +21,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 
 public class IncomingActivity extends AppCompatActivity {
-    static boolean acceptFlag = false;
+    static boolean acceptFlag ;
 
 
     private GoogleMap incomMap;
@@ -80,7 +80,15 @@ public class IncomingActivity extends AppCompatActivity {
         btAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                homeFragment.setFALG(true);
+                System.out.println(homeFragment);
+                acceptFlag = true;
+                finish();
+            }
+        });
+
+        btCancelReservation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 finish();
             }
         });
@@ -101,6 +109,9 @@ public class IncomingActivity extends AppCompatActivity {
             tvTime.setText(String.valueOf(millisUntilFinished/1000)+" S");
             int progress = (int) (millisUntilFinished / 100);
             progressBar.setProgress(progress);
+            if(millisUntilFinished/1000 == 1){
+                finish();
+            }
         }
 
         @Override
@@ -113,6 +124,11 @@ public class IncomingActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
+
+    }
+
+    static public boolean frag(){
+        return acceptFlag;
 
     }
 
