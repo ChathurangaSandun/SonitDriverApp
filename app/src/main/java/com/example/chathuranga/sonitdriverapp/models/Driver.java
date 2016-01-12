@@ -1,25 +1,28 @@
 package com.example.chathuranga.sonitdriverapp.models;
 
 /**
- * Created by pamba on 8/29/2015.
+ * Created by chathuranga on 1/11/2016.
  */
-public class User {
-
+public class Driver {
     private String userName;
     private String userType;
-    private int customerID;
+    private int driverID;
 
-    public User() {
+    public int getDriverID() {
+        return driverID;
     }
 
-    public User(String userType) {
-        this.userType = userType;
+    public Driver() {
     }
 
-    public User(String userName, String userType,int customerID) {
+    public void setDriverID(int driverID) {
+        this.driverID = driverID;
+    }
+
+    public Driver(String userName, String userType) {
+
         this.userName = userName;
         this.userType = userType;
-        this.customerID = customerID;
     }
 
     public String getUserName() {
@@ -36,13 +39,5 @@ public class User {
 
     public void setUserType(String userType) {
         this.userType = userType;
-    }
-
-    public int getCustomerID() {
-        return customerID;
-    }
-
-    public void setCustomerID(int customerID) {
-        this.customerID = customerID;
     }
 }

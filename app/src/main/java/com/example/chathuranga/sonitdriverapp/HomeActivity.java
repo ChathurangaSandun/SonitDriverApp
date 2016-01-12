@@ -19,7 +19,10 @@ public class HomeActivity extends AppCompatActivity
     SessionManager session;
     boolean homeFramentFlag = true;
 
-    String customerID;
+    int vehicleID;
+
+
+    static String driverID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,17 +39,20 @@ public class HomeActivity extends AppCompatActivity
 
         // name
         String name = user.get(SessionManager.KEY_NAME);
-        customerID = user.get(SessionManager.KEY_USERID);
+        driverID = user.get(SessionManager.KEY_USERID);
 
 
         System.out.println("session------------->"+name);
-        System.out.println("session------------->" + customerID);
+        System.out.println("session vehicle id------------->" + driverID);
+        System.out.println("dooooooooooooooooooo");
+
+
 
 
         //TODO  login set to driver and get driver id
         HomeFragment fragment = new HomeFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt("CUSTOMERID", Integer.parseInt(customerID));
+        bundle.putInt("VEHICLEID", Integer.parseInt(driverID));
         fragment.setArguments(bundle);
 
         FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
@@ -111,7 +117,7 @@ public class HomeActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             HomeFragment fragment = new HomeFragment();
             Bundle bundle = new Bundle();
-            bundle.putInt("CUSTOMERID", Integer.parseInt(customerID));
+            bundle.putInt("CUSTOMERID", Integer.parseInt(driverID));
             fragment.setArguments(bundle);
 
             FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
@@ -134,4 +140,6 @@ public class HomeActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

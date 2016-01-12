@@ -18,8 +18,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
-import com.example.chathuranga.sonitdriverapp.Parsers.UsesrJSONParser;
-import com.example.chathuranga.sonitdriverapp.models.User;
+import com.example.chathuranga.sonitdriverapp.Parsers.DriverJSONParser;
+import com.example.chathuranga.sonitdriverapp.models.Driver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,14 +38,18 @@ public class LoginActivity extends AppCompatActivity {
     AlertDialogManager alert = new AlertDialogManager();
     ConnectionDetector cd;
 
-    List<User> users = new ArrayList<>();
+    List<Driver> drivers = new ArrayList<>();
 
-
-    User loginUser;
+    Driver logindriver;
+    static int vehicleID;
 
 
     //session
     SessionManager session;
+
+    public static int getVehicleIDFromDriver() {//vehicle id
+        return vehicleID;
+    }
 
 
     @Override
@@ -144,7 +148,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void requestData(String userName,String password) {
 
-        String loginURL = SERVER_URL+"Login.php";
+        String loginURL = SERVER_URL+"DriverLogin.php";
         Log.e("Chahturanga      URL",loginURL);
 
         RequestPackage p = new RequestPackage();
@@ -197,21 +201,21 @@ public class LoginActivity extends AppCompatActivity {
             Log.e("Chahturanga      result", result);
 
 
-            users = UsesrJSONParser.parseFeed(result);
-            Log.e("Chahturanga      size()", String.valueOf(users.size()));
+            drivers = DriverJSONParser.parseFeed(result);
+            Log.e("Chahturanga      size()", String.valueOf(drivers.size()));
 
 
-            if (users.size() == 1) {
-                loginUser = users.get(0);
+            if (drivers.size() == 1) {
+                logindriver = drivers.get(0);
 
-                if (loginUser.getUserType().equals("passenger")) {
+                if (logindriver.getUserType().equals("driver")) {
                     // Creating user login session
                     // For testing i am stroing name
                     // Use user real data
 
-                    session.createLoginSession(username,String.valueOf(loginUser.getCustomerID()));
 
 
+                    getVehicleID();
 
                     Intent homeActivity = new Intent(getApplicationContext(), OnlineActivity.class);
                     startActivity(homeActivity);
@@ -228,12 +232,79 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+
             pbLogin.setVisibility(View.INVISIBLE);
             btLogin.setEnabled(true);
         }
 
 
     }
+
+    private void getVehicleID() {
+
+        String loginURL = SERVER_URL+"GetVehicleID.php";
+        Log.e("Chahturanga      URL", loginURL);
+
+        RequestPackage p = new RequestPackage();
+        p.setMethod("GET");
+        p.setUri(loginURL);
+        p.setParam("driverid",String.valueOf(logindriver.getDriverID() ));
+
+
+        Log.e("Chahturanga      URLgo", loginURL);
+
+        GetVehicleTask task = new GetVehicleTask();
+        task.execute(p);
+    }
+
+    private class GetVehicleTask extends AsyncTask<RequestPackage,String,String> {
+
+
+
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+
+        }
+
+
+
+        @Override
+        protected String doInBackground(RequestPackage... params) {
+
+            String content = HttpManager.getData(params[0]);
+            Log.e("Chahturanga    content",content);
+            return content;
+        }
+
+
+
+        @Override
+        protected void onProgressUpdate(String... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            Log.e("Chahturanga      result", result);
+            vehicleID = Integer.parseInt(result.replace("\"","").trim());
+            session.createLoginSession(username,String.valueOf(vehicleID));
+
+
+
+
+
+        }
+
+    }
+
+
+
 
 
 

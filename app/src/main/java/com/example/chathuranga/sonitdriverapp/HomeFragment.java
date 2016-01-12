@@ -76,6 +76,7 @@ public class HomeFragment extends Fragment {
     LinearLayout pickupLayout,dropoffLayout;
 
     TextView addressText,dropofftaddress;
+    int vehicleID;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -87,6 +88,9 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_home, container, false);
+
+        vehicleID = getArguments().getInt("VEHICLEID");
+        System.out.println("vehicle id->"+String.valueOf(vehicleID));
 
 
         btStatusButton = (Button) v.findViewById(R.id.btStatusButton);
@@ -124,7 +128,7 @@ public class HomeFragment extends Fragment {
 
         //LiveUpdateTimer liveUpdateTimer=  new LiveUpdateTimer();
         //liveUpdateTimer.start();
-        googleMap.setOnMyLocationChangeListener(myLocationChangeListener);
+        //googleMap.setOnMyLocationChangeListener(myLocationChangeListener);
 
 
         timer = new Timer();
@@ -133,7 +137,12 @@ public class HomeFragment extends Fragment {
             public void run() {
 
                 //TODO add vehicle id
-                requestAssignJob(1);
+
+
+
+
+
+                requestAssignJob(vehicleID);
 
 
             }
@@ -166,16 +175,6 @@ public class HomeFragment extends Fragment {
 
             }
         });
-
-
-
-
-
-
-
-
-
-
 
 
 
