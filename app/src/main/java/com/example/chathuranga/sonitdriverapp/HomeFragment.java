@@ -136,7 +136,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void run() {
 
-                //TODO add vehicle id
+
 
 
 
