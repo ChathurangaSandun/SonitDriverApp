@@ -1,12 +1,14 @@
 package com.example.chathuranga.sonitdriverapp;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -109,6 +111,7 @@ public class HomeFragment extends Fragment {
 
 
 
+
         mMapView = (MapView) v.findViewById(R.id.mapp);
         mMapView.onCreate(savedInstanceState);
         mMapView.onResume();// needed to get the map to display immediately
@@ -170,7 +173,38 @@ public class HomeFragment extends Fragment {
                 }else if("FINISH".equals(btStatusButton.getText().toString())){
                     btStatusButton.setText("Arrived");
                     requestData("FINISH");
+
+                    final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+                    alertDialogBuilder.setMessage("Are you sure,You wanted to Finish job");
+
+                    alertDialogBuilder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface arg0, int arg1) {
+
+                            Intent i = new Intent(getActivity(),FinishJobActivity.class);
+                            i.putExtra("JOBNUMBER",jobNumber);
+                            i.putExtra("VEHICLEID",vehicleID);
+                            startActivity(i);
+                            getActivity().finish();
+                        }
+                    });
+
+                    alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+
+
+
+
+
                 }
+
 
 
             }

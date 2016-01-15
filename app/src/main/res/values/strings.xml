@@ -13,4 +13,5 @@
     <string name="title_activity_incoming">IncomingActivity</string>
     <string name="title_activity_driver_map">Map</string>
     <string name="title_activity_online">OnlineActivity</string>
+    <string name="title_activity_finish_job">FinishJobActivity</string>
 </resources>
